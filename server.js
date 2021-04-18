@@ -23,7 +23,8 @@ var server = http.createServer(function(request, response){
 
     response.statusCode = 200
     response.setHeader('Content-Type','text/html;charset=utf-8')
-    const x = path
+    // 默认首页
+    const x = path === '/' ? '/index.html' : path
     let content
     try{
         content = fs.readFileSync(`./public${filePath}`)
