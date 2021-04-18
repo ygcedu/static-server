@@ -24,7 +24,14 @@ var server = http.createServer(function(request, response){
     response.statusCode = 200
     response.setHeader('Content-Type','text/html;charset=utf-8')
     const x = path
-    response.write(fs.readFileSync(`./public${x}`))
+    let content
+    try{
+        content = fs.readFileSync(`./public${filePath}`)
+    }catch(error){
+        content = '文件不存在'
+        response.statusCode = 404
+    }
+    response.write(content)
     response.end()
 
     /******** 代码结束，下面不要看 ************/
